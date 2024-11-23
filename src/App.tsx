@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { useStudents } from "./hooks/useStudents";
+
+import Form from "./components/form";
+import Dashboard from "./components/dashboard";
+import ViewTab from "./components/view-tab";
+
+import { View } from "./lib/types";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [view, setView] = useState<View>(View.FORM);
+  const { students, handleRegister, handleWithdraw } = useStudents();
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="py-10 px-6 mx-auto max-w-screen-lg space-y-6">
+      <div className="text-xl md:text-4xl text-center">Student Savings App</div>
+      <ViewTab setView={setView} view={view} />
+      {view === View.FORM ? (
+        <Form onRegister={handleRegister} studentsCount={students.length} />
+      ) : view === View.DASHBOARD ? (
+        <Dashboard onWithdraw={handleWithdraw} students={students} />
+      ) : null}
+    </div>
+  );
 }
 
-export default App
+export default App;
