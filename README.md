@@ -51,6 +51,7 @@ npm run dev
    - Tier 3: ₦30,000 (20% weekly interest)
 3. View calculated weekly interest and total withdrawal amount
 4. Click "Register" to join the group
+5. Click on the `dashboard` tab to view savings metrics
 
 ### Dashboard
 
