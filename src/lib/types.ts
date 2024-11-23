@@ -1,3 +1,8 @@
+export enum View {
+  FORM,
+  DASHBOARD,
+}
+
 export interface Student {
   id: string;
   name: string;
